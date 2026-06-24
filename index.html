@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단비마케팅 | 스토리가 살아있는 병원마케팅</title>
+<meta name="description" content="단비마케팅은 병원·의원 전문 단비마케팅입니다. 홈페이지 제작, 블로그 운영, SNS 세팅, 이벤트 팝업, 콘텐츠 제작까지 스토리가 살아있는 마케팅을 제공합니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #0FBED2;
+    --brand-dark: #0AA3B5;
+    --brand-light: #E6F9FB;
+    --brand-mid: #B2EBF2;
+    --dark: #111111;
+    --gray-800: #1F2937;
+    --gray-600: #505050;
+    --gray-400: #767676;
+    --gray-200: #D1D5DB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+    --white: #FFFFFF;
+    --radius: 12px;
+    --radius-sm: 8px;
+
+    /* 타이포그래피 컬러 시스템 */
+    --title-color: #111111;    /* 메인 타이틀 - semibold 600 */
+    --subtitle-color: #505050; /* 서브 타이틀 - regular 400 */
+    --body-color: #767676;     /* 본문 텍스트 - light 300 */
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--body-color);
+    background: var(--white);
+    line-height: 1.7;
+    font-size: 16px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── 타이포그래피 공통 ── */
+  h1, h2, h3, h4, h5 {
+    color: var(--title-color);
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    line-height: 1.35;
+  }
+
+  p { color: var(--body-color); font-weight: 300; }
+
+  strong { font-weight: 600; color: var(--subtitle-color); }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #E5E7EB;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--brand);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--title-color); }
+
+  nav { display: flex; gap: 4px; align-items: center; }
+  nav a {
+    text-decoration: none;
+    color: var(--subtitle-color);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover { color: var(--brand); background: var(--brand-light); }
+
+  .header-cta {
+    background: var(--brand) !important;
+    color: var(--white) !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    transition: background 0.2s !important;
+    margin-left: 8px;
+  }
+  .header-cta:hover { background: var(--brand-dark) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--title-color); border-radius: 2px; transition: 0.3s; }
+
+  /* ── HERO (동영상 배경) ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  #hero-video {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 56.25vw;   /* 16:9 비율 */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16:9 비율 역산 */
+    z-index: 0;
+    pointer-events: none;
+  }
+  #hero-video iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.52);
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 140px 0 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    font-weight: 400;
+    padding: 7px 18px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(6px);
+    letter-spacing: 0.3px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.75); }
+  }
+
+  .hero-title {
+    font-size: clamp(38px, 5.5vw, 66px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 24px;
+    letter-spacing: -1.5px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--brand);
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 44px;
+    line-height: 1.9;
+    max-width: 540px;
+  }
+
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+  .btn-primary {
+    background: var(--brand);
+    color: var(--white);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--brand-dark); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    border: 1.5px solid rgba(255,255,255,0.38);
+    padding: 13px 30px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.85); color: var(--white); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.35);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+    50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 100px 5%; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    color: var(--title-color);
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .section-desc {
+    font-size: 16px;
+    color: var(--body-color);
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.85;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--gray-50); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    color: var(--body-color);
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+  .about-text p strong {
+    color: var(--title-color);
+    font-weight: 600;
+  }
+
+  .about-img-wrap {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .about-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius);
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--white); }
+
+  .portfolio-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 40px 0 32px;
+  }
+
+  .tab-btn {
+    padding: 9px 20px;
+    border-radius: 20px;
+    border: 1.5px solid #E5E7EB;
+    background: var(--white);
+    color: var(--subtitle-color);
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .portfolio-card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid #E5E7EB;
+    background: var(--white);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+
+  .pc-thumb {
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pc-thumb-inner {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.3px;
+  }
+  .pc-thumb.type-web    { background: linear-gradient(135deg, #E6F9FB 0%, #B2EBF2 100%); }
+  .pc-thumb.type-web .pc-thumb-inner { color: var(--brand-dark); }
+  .pc-thumb.type-blog   { background: linear-gradient(135deg, #FFF8F0 0%, #FFE0B2 100%); }
+  .pc-thumb.type-blog .pc-thumb-inner { color: #BF8040; }
+  .pc-thumb.type-sns    { background: linear-gradient(135deg, #F5F0FF 0%, #E1BEE7 100%); }
+  .pc-thumb.type-sns .pc-thumb-inner { color: #7B5EA7; }
+  .pc-thumb.type-promo  { background: linear-gradient(135deg, #F0FFF4 0%, #C8E6C9 100%); }
+  .pc-thumb.type-promo .pc-thumb-inner { color: #388E3C; }
+  .pc-thumb.type-content{ background: linear-gradient(135deg, #F0F4FF 0%, #BBDEFB 100%); }
+  .pc-thumb.type-content .pc-thumb-inner { color: #1565C0; }
+
+  .pc-cat {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(4px);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--subtitle-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+
+  .pc-body { padding: 18px 20px 20px; }
+  .pc-body h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--title-color);
+    margin-bottom: 6px;
+  }
+  .pc-body p {
+    font-size: 13px;
+    color: var(--body-color);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--title-color); }
+  #services .section-tag { color: var(--brand); }
+  #services .section-title { color: var(--white); }
+  #services .section-desc { color: rgba(255,255,255,0.45); font-weight: 300; max-width: none; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 60px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .service-item {
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+  .service-item:hover { background: rgba(15,190,210,0.08); }
+
+  .si-num {
+    font-size: 11px;
+    color: var(--brand);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .si-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .si-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  /* ── PACKAGES ── */
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .pkg-card {
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .pkg-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .pkg-icon {
+    font-size: 24px;
+    width: 48px; height: 48px;
+    background: rgba(15,190,210,0.15);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .pkg-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .pkg-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+  }
+  .pkg-body {
+    padding: 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .pkg-category {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+  .pkg-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: -4px;
+  }
+  .pkg-tags span {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    font-weight: 300;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .pkg-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(15,190,210,0.08);
+  }
+  .pkg-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+  .pkg-price {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--brand);
+    letter-spacing: -0.5px;
+  }
+  .pkg-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .pkg-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--gray-50); }
+
+  .process-list { margin-top: 60px; }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 36px 0;
+    border-bottom: 1px solid #EBEBEB;
+  }
+  .process-item:last-child { border-bottom: none; }
+
+  .pi-step {
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--brand);
+    opacity: 0.3;
+    line-height: 1;
+    padding-top: 4px;
+    letter-spacing: -1px;
+  }
+  .pi-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--title-color);
+    margin-bottom: 8px;
+  }
+  .pi-content p {
+    font-size: 15px;
+    color: var(--body-color);
+    font-weight: 300;
+    line-height: 1.85;
+  }
+
+  .process-notes {
+    list-style: none;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .process-notes li {
+    font-size: 14px;
+    color: var(--body-color);
+    font-weight: 300;
+    padding-left: 20px;
+    position: relative;
+  }
+  .process-notes li::before {
+    content: 'ⓘ';
+    position: absolute;
+    left: 0;
+    color: var(--brand);
+    font-size: 13px;
+  }
+
+  /* ── CTA ── */
+  #contact {
+    background: var(--brand);
+    color: var(--white);
+    padding: 80px 5%;
+    text-align: center;
+  }
+  #contact h2 {
+    font-size: clamp(24px, 3.5vw, 40px);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+  }
+  #contact p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 300;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .contact-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-white {
+    background: var(--white);
+    color: var(--brand);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+  .btn-white-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.5);
+    padding: 13px 32px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Pretendard', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-white-outline:hover { border-color: rgba(255,255,255,0.9); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0E0E0E;
+    color: rgba(255,255,255,0.35);
+    padding: 48px 5% 36px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.3); font-weight: 300; }
+
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+  .footer-links a {
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+    font-weight: 300;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--brand); }
+
+  .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); }
+
+  .footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+    font-size: 12.5px;
+    font-weight: 300;
+    line-height: 2;
+  }
+  .footer-info span { color: rgba(255,255,255,0.3); }
+  .footer-info strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 300;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { display: none; }
+    nav.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--white);
+      padding: 16px 5%;
+      border-bottom: 1px solid #E5E7EB;
+      gap: 4px;
+      z-index: 99;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    nav.open a { padding: 10px 12px; }
+    .hamburger { display: flex; }
+
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 0; }
+    .hero-visual { height: 280px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-item { grid-template-columns: 60px 1fr; gap: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .footer-top { flex-direction: column; }
+    section { padding: 72px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="logo">단비<span>마케팅</span></a>
+  <nav id="main-nav">
+    <a href="about.html">회사 소개</a>
+    <a href="portfolio-web.html">홈페이지</a>
+    <a href="portfolio-blog.html">블로그</a>
+    <a href="portfolio-sns.html">SNS</a>
+    <a href="portfolio-promo.html">프로모션</a>
+    <a href="portfolio-etc.html">각종 안내문</a>
+    <a href="#contact" class="header-cta">무료 상담</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-video">
+    <iframe src="https://player.vimeo.com/video/1204175060?autoplay=1&muted=1&loop=1&background=1&quality=1080p"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-tag">병원·의원 전문 단비마케팅</div>
+    <h1 class="hero-title">병원의 신뢰를<br><em>디자인합니다</em></h1>
+    <p class="hero-sub">단비마케팅은 환자의 선택과 병원의 성장을 연결하는<br>브랜드 경험을 만듭니다.</p>
+
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-tag">ABOUT US</div>
+    <h2 class="section-title">환자의 마음을 움직이는<br>병원 마케팅 파트너</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>단비마케팅은 치과 마케팅 분야에서 축적한 경험과 검증된 전략을 바탕으로 병·의원의 신뢰와 성장을 함께 만들어가는 마케팅 파트너입니다.</p>
+        <p>저희는 단순히 광고를 집행하거나 콘텐츠를 제작하는 데 그치지 않습니다. 홈페이지 제작부터 네이버 블로그 운영, SNS 세팅, 프로모션 디자인까지 환자와 만나는 모든 접점에서 병원의 가치와 강점이 일관되게 전달될 수 있도록 브랜드 경험을 설계합니다.</p>
+        <p>수많은 병·의원과 함께하며 얻은 경험을 바탕으로, 병원의 철학은 더 잘 전달되고 환자의 선택은 더욱 자연스럽게 이어질 수 있는 마케팅을 만들어가고 있습니다.</p>
+        <p><strong>단비마케팅은 병원의 신뢰를 디자인합니다.</strong><br>그리고 그 신뢰가 지속적인 성장으로 이어질 수 있도록 함께하겠습니다.</p>
+      </div>
+      <div class="about-img-wrap">
+        <img src="https://i.ibb.co/ch6ZWtyy/A74-20260224-1873.png" alt="단비마케팅 작업 현장">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-tag">PORTFOLIO</div>
+    <h2 class="section-title">단비마케팅의 작업물</h2>
+    <p class="section-desc">병원 마케팅의 모든 영역에서 완성된 결과물을 직접 확인하세요.</p>
+
+    <div class="portfolio-tabs">
+      <button class="tab-btn active" onclick="filterPortfolio('all', this)">전체</button>
+      <button class="tab-btn" onclick="filterPortfolio('web', this)">홈페이지</button>
+      <button class="tab-btn" onclick="filterPortfolio('blog', this)">블로그</button>
+      <button class="tab-btn" onclick="filterPortfolio('sns', this)">SNS</button>
+      <button class="tab-btn" onclick="filterPortfolio('promo', this)">프로모션</button>
+      <button class="tab-btn" onclick="filterPortfolio('content', this)">각종 안내문</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolio-grid">
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/JWtxVgGd/1.jpg" alt="홈페이지 포트폴리오 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/GGYH4fX/2.jpg" alt="홈페이지 포트폴리오 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/NgPHKY5F/3.jpg" alt="홈페이지 포트폴리오 3" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/RTP2SssY/4.jpg" alt="홈페이지 포트폴리오 4" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/844KzYpq/5.jpg" alt="홈페이지 포트폴리오 5" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="web">
+        <div class="pc-thumb type-web" style="background:none; padding:0;">
+          <div class="pc-cat">홈페이지</div>
+          <img src="https://i.ibb.co/xK17fPwq/6.jpg" alt="홈페이지 포트폴리오 6" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/B5KQWpcP/1.jpg" alt="블로그 포트폴리오 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/qLpWRWLq/2.jpg" alt="블로그 포트폴리오 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/hx0nQJ1G/3.jpg" alt="블로그 포트폴리오 3" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/6RrqRfvf/4.jpg" alt="블로그 포트폴리오 4" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/JwZHD2hX/5.jpg" alt="블로그 포트폴리오 5" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/tw79WNk0/6.jpg" alt="블로그 포트폴리오 6" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/prNkGJvJ/7.jpg" alt="블로그 포트폴리오 7" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/pckC9FV/8.jpg" alt="블로그 포트폴리오 8" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="blog">
+        <div class="pc-thumb type-blog" style="background:none; padding:0;">
+          <div class="pc-cat">블로그</div>
+          <img src="https://i.ibb.co/fYgfZ0b6/9.jpg" alt="블로그 포트폴리오 9" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/XkZkScF0/1.png" alt="SNS 포트폴리오 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/Gv8sxnP7/2.png" alt="SNS 포트폴리오 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/Tx8Zqnq8/3.png" alt="SNS 포트폴리오 3" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/tS6N18J/4.png" alt="SNS 포트폴리오 4" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/v6V7gdff/5.png" alt="SNS 포트폴리오 5" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="sns">
+        <div class="pc-thumb type-sns" style="background:none; padding:0;">
+          <div class="pc-cat">SNS</div>
+          <img src="https://i.ibb.co/d4Zx6172/6.png" alt="SNS 포트폴리오 6" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/SwpK7zFx/1.png" alt="프로모션 포트폴리오 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/j94RSxfL/2.png" alt="프로모션 포트폴리오 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/Txw3QMFR/3.png" alt="프로모션 포트폴리오 3" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/Gf9S4vkN/4.png" alt="프로모션 포트폴리오 4" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/Kp4tn30g/5.png" alt="프로모션 포트폴리오 5" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+      <div class="portfolio-card" data-type="promo">
+        <div class="pc-thumb type-promo" style="background:none; padding:0;">
+          <div class="pc-cat">프로모션</div>
+          <img src="https://i.ibb.co/8gP4tB4v/6.png" alt="프로모션 포트폴리오 6" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+      </div>
+
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/bRrrDRbm/7.png" alt="각종 안내문 1" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/844JZJBB/8.png" alt="각종 안내문 2" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/fYvwSsgw/9.png" alt="각종 안내문 3" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/MD7d2LJV/10.png" alt="각종 안내문 4" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/1frtcK70/11.png" alt="각종 안내문 5" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+      <div class="portfolio-card" data-type="content">
+        <div class="pc-thumb type-content" style="background:none; padding:0;">
+          <div class="pc-cat">각종 안내문</div>
+          <img src="https://i.ibb.co/3mVvVmDZ/12.png" alt="각종 안내문 6" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-tag">WHAT WE DO</div>
+    <h2 class="section-title">단비마케팅의 주력 패키지</h2>
+    <p class="section-desc">병원의 성장 단계에 맞춰 선택할 수 있는 맞춤 마케팅 패키지입니다.</p>
+    <div class="pkg-grid">
+
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">🔔</div>
+          <div>
+            <div class="pkg-name">개원스타트패키지</div>
+            <div class="pkg-sub">처음 시작하는 병원을 위한 필수 구성</div>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-category">N사 브랜딩</div>
+          <div class="pkg-tags">
+            <span>플레이스 세팅</span><span>브랜드 블로그 스킨</span><span>포스팅 4회</span><span>영수증 리뷰 2회</span><span>악성 리뷰 관리</span>
+          </div>
+          <div class="pkg-category">병원 공간 디자인</div>
+          <div class="pkg-tags">
+            <span>대기실·상담실 화면</span><span>모니터 영상 3편</span><span>배너 제작</span><span>디자인 월 1회</span>
+          </div>
+          <div class="pkg-category">다채널 SNS 관리</div>
+          <div class="pkg-tags">
+            <span>인스타그램/당근마켓/카카오톡 프로필(업로드 4회)</span><span>카카오맵 리뷰 2회</span>
+          </div>
+          <div class="pkg-category">전략 지원</div>
+          <div class="pkg-tags">
+            <span>의료광고 심의 대응</span><span>3개월 로드맵</span><span>보건소 민원 대응</span>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <span class="pkg-label">개원스타트 패키지</span>
+          <span class="pkg-price">55만원~</span>
+        </div>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-header">
+          <div class="pkg-icon">📋</div>
+          <div>
+            <div class="pkg-name">기초톤톤 패키지</div>
+            <div class="pkg-sub">더 넓은 채널, 더 강한 마케팅</div>
+          </div>
+        </div>
+        <div class="pkg-body">
+          <div class="pkg-category">N사 브랜딩 (강화)</div>
+          <div class="pkg-tags">
+            <span>블로그 포스팅 8회</span><span>노출 언론보도 1회</span><span>영수증 리뷰 4회</span><span>악성 리뷰 관리</span>
+          </div>
+          <div class="pkg-category">병원 공간 디자인</div>
+          <div class="pkg-tags">
+            <span>디자인 월 2회</span>
+          </div>
+          <div class="pkg-category">다채널 SNS 관리</div>
+          <div class="pkg-tags">
+            <span>인스타그램/당근마켓/카카오톡 프로필(업로드 8회)</span><span>카카오맵 리뷰 4회</span><span>밈카페 여론 2개월에 1회</span><span>당근 여론 1회</span>
+          </div>
+          <div class="pkg-category">전략 지원</div>
+          <div class="pkg-tags">
+            <span>의료광고 심의 대응</span><span>3개월 로드맵</span><span>보건소 민원 대응</span>
+          </div>
+        </div>
+        <div class="pkg-footer">
+          <span class="pkg-label">기초톤톤 패키지</span>
+          <span class="pkg-price">119만원~</span>
+        </div>
+      </div>
+
+    </div>
+    <p class="pkg-note">* 패키지 구성 및 가격은 병원 상황에 따라 조정될 수 있습니다. 자세한 내용은 상담을 통해 안내드립니다.</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-tag">HOW WE WORK</div>
+    <h2 class="section-title">단비마케팅과 함께하는 방법</h2>
+    <p class="section-desc">처음부터 끝까지 투명하게, 병원 원장님이 마케팅을 이해할 수 있도록 진행합니다.</p>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="pi-step">01</div>
+        <div class="pi-content">
+          <h3>상담 문의</h3>
+          <p>홈페이지 내 문의폼을 통해 간단한 상담 신청서를 남겨주시면 병원 상황을 먼저 확인합니다. (현재 운영 방식, 고민, 목표 등)</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="pi-step">02</div>
+        <div class="pi-content">
+          <h3>맞춤 서비스 제안</h3>
+          <p>병원 상황에 맞는 서비스만 제안드립니다. 불필요한 작업은 제외하고 필요한 항목만 안내합니다. 예산에 맞춘 현실적인 방향을 제시합니다.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="pi-step">03</div>
+        <div class="pi-content">
+          <h3>1:1 맞춤 상담</h3>
+          <p>대표 또는 담당자가 직접 상담을 진행합니다. 현재 문제점과 개선 방향을 함께 정리합니다.</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="pi-step">04</div>
+        <div class="pi-content">
+          <h3>계약 및 마케팅 시작</h3>
+          <p>최종 결정 후 1개월 단위로 마케팅을 시작합니다. 진행 후 결과를 확인하며 지속 여부를 결정하실 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+    <ul class="process-notes">
+      <li>단비마케팅은 충분한 상담 후 진행합니다.</li>
+      <li>의료광고 심의 및 민원 리스크를 고려해 운영합니다.</li>
+      <li>가성비가 우수한 상품을 찾는 분들께 적합합니다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+  <h2>병원 마케팅,<br>이제 단비에게 맡겨보세요</h2>
+  <p>포트폴리오 문의부터 무료 상담까지 — 부담 없이 연락 주세요.</p>
+  <div class="contact-btns">
+    <a href="https://drive.google.com/uc?export=download&id=1RWNuEmZ-UuxrqsVPJkjJ1EP3th5HCdaW" class="btn-white" target="_blank">
+      📄 회사 소개서 다운로드
+    </a>
+    <a href="tel:0315513322" class="btn-white-outline">
+      📞 무료 상담 연결
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">단비마케팅</div>
+        <div class="footer-tagline">스토리가 살아있는 병원마케팅</div>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">회사 소개</a>
+        <a href="portfolio-web.html">홈페이지</a>
+        <a href="portfolio-blog.html">블로그</a>
+        <a href="portfolio-sns.html">SNS</a>
+        <a href="portfolio-promo.html">프로모션</a>
+        <a href="portfolio-etc.html">각종 안내문</a>
+        <a href="#contact">상담 문의</a>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-info">
+      <span><strong>상호명</strong> 단비마케팅</span>
+      <span><strong>대표자</strong> 나대진</span>
+      <span><strong>사업자등록번호</strong> 274-79-00077</span>
+      <span><strong>주소</strong> 경기 구리시 체육관로80번길 41 신안빌딩 5층</span>
+      <span><strong>대표번호</strong> 031-551-3322</span>
+      <span><strong>팩스</strong> 031-553-6688</span>
+      <span><strong>이메일</strong> danbi551@naver.com</span>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 단비마케팅. All rights reserved.</span>
+      <span>개인정보처리방침 · 이용약관</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('main-nav').classList.toggle('open');
+}
+
+function filterPortfolio(type, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
+  });
+}
+
+
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('main-nav').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
